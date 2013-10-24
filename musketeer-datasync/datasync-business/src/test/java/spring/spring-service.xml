@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="genericService" class="net.musketeer.datasync.business.service.GenericBusinessService" abstract="true"/>
+
+	<bean id="genericHandler" class="net.musketeer.datasync.business.service.GenericPersistentHandler" abstract="true"/>
+
+	<bean id="bookService" parent="genericService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>book-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="bookHandler"/>
+	</bean>
+	
+	<bean id="bookHandler" parent="genericHandler">
+		<property name="dao" ref="bookDao"/>
+	</bean>
+	
+	<bean id="bookLanguageService" parent="genericService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>bookLanguage-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="bookHandler"/>
+	</bean>
+	
+	<bean id="bookLanguageHandler" parent="genericHandler">
+		<property name="dao" ref="bookLanguageDao"/>
+	</bean>
+	
+</beans>

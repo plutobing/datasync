@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.musketeer.datasync.business.dao.VideoFilesDao">
+
+	<insert id="save" parameterType="java.util.Map">
+		INSERT T_MOVIES_FILES (id,
+		no,location) values (#{id},#{no},#{location}) ON DUPLICATE KEY UPDATE
+		location=#{location}
+	</insert>
+
+</mapper>  

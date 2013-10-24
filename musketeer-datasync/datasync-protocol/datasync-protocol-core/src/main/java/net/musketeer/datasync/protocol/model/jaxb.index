@@ -1,0 +1,11 @@
+AbstractAttributeDefinition
+AbstractDefinition
+CommonsDefinition
+ContentType
+IODirection
+ModeEnum
+ParamDefinition
+ProtocolDefinition
+RequestDefinition
+ResponseDefinition
+SideEnum

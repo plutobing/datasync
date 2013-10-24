@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.musketeer.datasync.business.dao.VideoDao">
+
+	<insert id="save" parameterType="java.util.Map">
+		INSERT T_MOVIES (id,
+		images,type,ismovice) values (#{id},#{images},#{type},#{ismovice}) ON
+		DUPLICATE KEY UPDATE
+		images=#{images},type=#{type},ismovice=#{ismovice}
+	</insert>
+
+</mapper>  

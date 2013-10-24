@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="genericBusinessService" class="net.musketeer.datasync.business.service.GenericBusinessService" abstract="true"/>
+	
+	<bean id="genericPersistentHandler" class="net.musketeer.datasync.business.service.GenericPersistentHandler" abstract="true"/>
+	
+	<bean id="originalDataProcessService" class="net.musketeer.datasync.business.service.OriginalDataProcessService">
+		<constructor-arg>
+			<value>original-data-queue</value>
+		</constructor-arg>
+		<property name="queues">
+			<map>
+				<entry key="book" value="book-queue"/>
+				<entry key="bookLanguage" value="bookLanguage-queue"/>
+				<entry key="music" value="music-queue"/>
+				<entry key="musicLanguage" value="musicLangauge-queue"/>
+				<entry key="video" value="video-queue"/>
+				<entry key="videoLanguage" value="videoLanguage-queue"/>
+				<entry key="videoFiles" value="videoFiles-queue"/>
+				<entry key="resourceCollection" value="resourceCollection-queue"/>			
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="bookPersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="bookDao"/>
+	</bean>
+	
+	<bean id="bookService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>book-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="bookPersistent"/>
+	</bean>
+	
+	<bean id="bookLanguagePersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="bookLanguageDao"/>
+	</bean>
+	
+	<bean id="bookLanguageService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>bookLanguage-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="bookLanguagePersistent"/>
+	</bean>
+	
+	<bean id="musicPersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="musicDao"/>
+	</bean>
+	
+	<bean id="musicService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>music-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="musicPersistent"/>
+	</bean>
+	
+	<bean id="musicLanguagePersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="musicLanguageDao"/>
+	</bean>
+	
+	<bean id="musicLanguageService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>musicLanguage-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="musicLanguagePersistent"/>
+	</bean>
+
+	<bean id="videoPersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="videoDao"/>
+	</bean>
+	
+	<bean id="videoService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>video-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="bookPersistent"/>
+	</bean>
+	
+	<bean id="videoLanguagePersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="videoLanguageDao"/>
+	</bean>
+	
+	<bean id="videoLanguageService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>videoLanguage-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="videoLanguagePersistent"/>
+	</bean>
+	
+	<bean id="videoFilesPersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="videoFilesDao"/>
+	</bean>
+	
+	<bean id="videoFilesService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>videoFiles-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="videoFilesPersistent"/>
+	</bean>
+	
+	<bean id="resourceCollectionPersistent" parent="genericPersistentHandler">
+		<property name="dao" ref="resourceCollectionDao"/>
+	</bean>
+	
+	<bean id="resourceCollectionService" parent="genericBusinessService">
+		<constructor-arg>
+			<value>10</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>resourceCollection-queue</value>
+		</constructor-arg>
+		<property name="handler" ref="resourceCollectionPersistent"/>
+	</bean>
+
+</beans>
