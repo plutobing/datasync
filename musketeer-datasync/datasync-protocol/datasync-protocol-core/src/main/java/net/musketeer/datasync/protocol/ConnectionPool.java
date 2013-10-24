@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import net.musketeer.datasync.protocol.model.ProtocolDefinition;
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
 
 public class ConnectionPool {
 	
@@ -19,7 +19,7 @@ public class ConnectionPool {
 	
 	private int maxWaitTime = 5000;
 	
-	private ProtocolDefinition definition;
+	private ProtocolConfig definition;
 	
 	private BlockingQueue< Connection > pool;
 	
@@ -111,11 +111,11 @@ public class ConnectionPool {
 		this.capacity = capacity;
 	}
 
-	public ProtocolDefinition getDefinition() {
+	public ProtocolConfig getDefinition() {
 		return definition;
 	}
 
-	public void setDefinition( ProtocolDefinition definition ) {
+	public void setDefinition( ProtocolConfig definition ) {
 		this.definition = definition;
 	}
 

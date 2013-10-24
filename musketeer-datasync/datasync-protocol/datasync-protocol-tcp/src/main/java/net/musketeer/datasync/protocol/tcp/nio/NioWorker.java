@@ -7,7 +7,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import net.musketeer.datasync.protocol.model.ProtocolDefinition;
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
 import net.musketeer.datasync.protocol.tcp.nio.event.Handler;
 import net.musketeer.datasync.protocol.tcp.nio.event.InStreamHandler;
 import net.musketeer.datasync.protocol.tcp.nio.event.StreamHandler;
@@ -18,11 +18,11 @@ public abstract class NioWorker implements Runnable {
 	
 	protected ThreadPoolExecutor executor;
 	
-	protected ProtocolDefinition config;
+	protected ProtocolConfig config;
 	
 //	private ConcurrentLinkedQueue< Session > queue = new ConcurrentLinkedQueue< Session >();
 
-	public NioWorker( ThreadPoolExecutor executor, ProtocolDefinition definition ) {
+	public NioWorker( ThreadPoolExecutor executor, ProtocolConfig definition ) {
 		this.executor = executor;
 		this.config = definition;
 	}
@@ -82,11 +82,11 @@ public abstract class NioWorker implements Runnable {
 	
 	public abstract Handler createHandler( SelectionKey key );
 
-	public ProtocolDefinition getConfig() {
+	public ProtocolConfig getConfig() {
 		return config;
 	}
 
-	public void setConfig(ProtocolDefinition config) {
+	public void setConfig(ProtocolConfig config) {
 		this.config = config;
 	}
 

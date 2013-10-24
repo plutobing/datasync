@@ -3,10 +3,10 @@ package net.musketeer.datasync.protocol.tcp.model;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.musketeer.datasync.protocol.model.CommonsDefinition;
+import net.musketeer.datasync.protocol.config.CommonsConfig;
 
 @XmlRootElement( name = "commons.tcp" )
-public class TcpCommonsDefinition extends CommonsDefinition {
+public class TcpCommonsDefinition extends CommonsConfig {
 	@XmlAttribute
 	private boolean isBlock;
 

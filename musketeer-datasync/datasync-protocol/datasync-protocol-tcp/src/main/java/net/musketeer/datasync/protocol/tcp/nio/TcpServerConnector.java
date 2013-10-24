@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import net.musketeer.datasync.protocol.model.ProtocolDefinition;
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
 import net.musketeer.datasync.protocol.tcp.AbstractTcpConnector;
 import net.musketeer.datasync.protocol.tcp.model.TcpCommonsDefinition;
 import net.musketeer.datasync.protocol.tcp.model.TcpRequestDefinition;
@@ -30,7 +30,7 @@ public class TcpServerConnector extends AbstractTcpConnector {
 
 	private static Logger LOG = LoggerFactory.getLogger( TcpServerConnector.class );
 		
-	private ProtocolDefinition definition;
+	private ProtocolConfig definition;
 
 	private ServerSocketChannel ssc;
 	
@@ -42,7 +42,7 @@ public class TcpServerConnector extends AbstractTcpConnector {
 	
 	private ExecutorService starter;
 	
-	public TcpServerConnector( ProtocolDefinition config ) {
+	public TcpServerConnector( ProtocolConfig config ) {
 		super( config );
 	}
 	
@@ -150,7 +150,7 @@ public class TcpServerConnector extends AbstractTcpConnector {
 
 	}
 
-	public ProtocolDefinition getDefinition() {
+	public ProtocolConfig getDefinition() {
 		return definition;
 	}
 

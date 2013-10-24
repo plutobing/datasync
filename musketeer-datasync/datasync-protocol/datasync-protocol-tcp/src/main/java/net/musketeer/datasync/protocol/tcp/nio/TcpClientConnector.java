@@ -7,18 +7,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.musketeer.datasync.protocol.Connection;
-import net.musketeer.datasync.protocol.model.ProtocolDefinition;
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
 import net.musketeer.datasync.protocol.tcp.AbstractTcpConnector;
 
 public class TcpClientConnector extends AbstractTcpConnector {
 
 	private static Logger LOG = LoggerFactory.getLogger( TcpClientConnector.class );
 	
-	private ProtocolDefinition definition;
+	private ProtocolConfig definition;
 		
 	private SocketChannel channel;
 	
-	public TcpClientConnector( ProtocolDefinition config ) {
+	public TcpClientConnector( ProtocolConfig config ) {
 		super( config );
 	}
 	
@@ -57,11 +57,11 @@ public class TcpClientConnector extends AbstractTcpConnector {
 		
 	}
 
-	public ProtocolDefinition getDefinition() {
+	public ProtocolConfig getDefinition() {
 		return definition;
 	}
 
-	public void setDefinition(ProtocolDefinition definition) {
+	public void setDefinition(ProtocolConfig definition) {
 		this.definition = definition;
 	}
 
