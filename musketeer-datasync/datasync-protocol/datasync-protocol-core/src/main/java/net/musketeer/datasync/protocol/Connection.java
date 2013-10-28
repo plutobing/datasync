@@ -19,4 +19,6 @@ public interface Connection {
 	
 	public void stop() throws Exception;
 	
+	public ProtocolConfig getConfig();
+	
 }
