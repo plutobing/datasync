@@ -1,5 +1,7 @@
 package net.musketeer.datasync.protocol;
 
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
+
 /**
  * 
  * @author pluto.bing.liu
