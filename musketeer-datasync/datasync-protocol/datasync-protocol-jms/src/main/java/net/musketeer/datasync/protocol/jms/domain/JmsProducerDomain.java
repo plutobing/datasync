@@ -5,7 +5,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 
 import net.musketeer.datasync.protocol.jms.NoSuchTypeException;
-import net.musketeer.datasync.protocol.jms.TypeEnum;
+import net.musketeer.datasync.protocol.jms.config.TypeEnum;
 
 public class JmsProducerDomain extends JmsDomain {
 		
