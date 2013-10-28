@@ -9,7 +9,7 @@ import javax.jms.Session;
 
 import net.musketeer.datasync.memqueue.MemQueueProducer;
 import net.musketeer.datasync.protocol.jms.NoSuchTypeException;
-import net.musketeer.datasync.protocol.jms.TypeEnum;
+import net.musketeer.datasync.protocol.jms.config.TypeEnum;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

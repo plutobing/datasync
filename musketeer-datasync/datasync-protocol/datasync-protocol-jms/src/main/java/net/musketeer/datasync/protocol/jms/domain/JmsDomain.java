@@ -15,7 +15,7 @@ import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import net.musketeer.datasync.protocol.jms.TypeEnum;
+import net.musketeer.datasync.protocol.jms.config.TypeEnum;
 
 public abstract class JmsDomain {
 	
