@@ -139,7 +139,7 @@ public class Launcher {
 			if ( name.endsWith( ".class" )  ) {
 				name = entry.getName().replaceAll( "/", "." ).substring( 
 						0, entry.getName().lastIndexOf( "." ) );
-				if ( name.equals( "net.musketeer.standalone.StandAloneMain" ) ) {
+				if ( name.equals( "net.musketeer.datasync.standalone.StandAloneMain" ) ) {
 					this.classLoader = new URLClassLoader( new URL[] { file.toURI().toURL() }, 
 							ClassLoader.getSystemClassLoader() );
 					this.mainClazz = this.classLoader.loadClass( name );
