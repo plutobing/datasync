@@ -3,7 +3,7 @@ package net.musketeer.datasync.protocol.config;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * 请求配置抽象基类
@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author pluto.bing.liu
  *
  */
-@XmlRootElement( name = "request" )
-public abstract class RequestConfig extends AbstractAttributeDefinition {
+@XmlType
+public class RequestConfig extends AbstractAttributeDefinition {
 	
 	protected List< ParamConfig > params = new LinkedList< ParamConfig >();
 

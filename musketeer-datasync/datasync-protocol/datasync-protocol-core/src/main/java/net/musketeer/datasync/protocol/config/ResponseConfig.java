@@ -1,6 +1,6 @@
 package net.musketeer.datasync.protocol.config;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * 应答配置抽象基类
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author pluto.bing.liu
  *
  */
-@XmlRootElement( name = "response" )
+@XmlType
 public abstract class ResponseConfig extends AbstractAttributeDefinition {
 
 }

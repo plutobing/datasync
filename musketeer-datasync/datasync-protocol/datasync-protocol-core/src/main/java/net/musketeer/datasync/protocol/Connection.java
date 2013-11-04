@@ -23,4 +23,6 @@ public interface Connection {
 	
 	public ProtocolConfig getConfig();
 	
+	public void setConfig( ProtocolConfig config );
+	
 }

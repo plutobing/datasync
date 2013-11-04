@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import net.musketeer.datasync.protocol.config.ProtocolConfig;
+import net.musketeer.datasync.protocol.tcp.config.TcpRequestConfig;
 import net.musketeer.datasync.protocol.tcp.nio.event.Handler;
-import net.musketeer.datasync.protocol.tcp.nio.event.InStreamHandler;
 import net.musketeer.datasync.protocol.tcp.nio.event.StreamHandler;
 
 public abstract class NioWorker implements Runnable {
@@ -22,9 +22,9 @@ public abstract class NioWorker implements Runnable {
 	
 //	private ConcurrentLinkedQueue< Session > queue = new ConcurrentLinkedQueue< Session >();
 
-	public NioWorker( ThreadPoolExecutor executor, ProtocolConfig definition ) {
+	public NioWorker( ThreadPoolExecutor executor, ProtocolConfig config ) {
 		this.executor = executor;
-		this.config = definition;
+		this.config = config;
 	}
 	
 	public void run() {
@@ -61,10 +61,10 @@ public abstract class NioWorker implements Runnable {
 	}
 	
 	public void register( SocketChannel channel ) throws IOException {
-		channel.configureBlocking(  );
-		channel.socket().setKeepAlive(  );
-		channel.socket().setReuseAddress(  );
-		channel.socket().setTcpNoDelay(  );
+		channel.configureBlocking( ( ( TcpRequestConfig ) getConfig().getRequest() ).isBlock() );
+		channel.socket().setKeepAlive( ( ( TcpRequestConfig ) getConfig().getRequest() ).isKeepAlive() );
+		channel.socket().setReuseAddress( ( ( TcpRequestConfig ) getConfig().getRequest() ).isReuseAddress() );
+		channel.socket().setTcpNoDelay( ( ( TcpRequestConfig ) getConfig().getRequest() ).isNoDelay() );
 		
 		Selector selector;
 		

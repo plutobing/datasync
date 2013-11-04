@@ -65,4 +65,20 @@ public class TcpClientConnector extends AbstractTcpConnector {
 		this.definition = definition;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.musketeer.datasync.protocol.Connection#getConfig()
+	 */
+	@Override
+	public ProtocolConfig getConfig() {
+		return this.config;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.musketeer.datasync.protocol.Connection#setConfig(net.musketeer.datasync.protocol.config.ProtocolConfig)
+	 */
+	@Override
+	public void setConfig( ProtocolConfig config ) {
+		this.config = config;
+	}
+
 }

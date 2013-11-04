@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBContext;
 
-import net.musketeer.datasync.core.conf.EnvConf;
+import net.musketeer.datasync.Env;
 import net.musketeer.datasync.memqueue.model.ConfigurationDefinition;
 import net.musketeer.datasync.memqueue.model.QueueDefinition;
 
@@ -30,7 +30,7 @@ public class MemoryQueueManager {
 							.getName() );
 
 			ConfigurationDefinition configuration = ( ConfigurationDefinition ) context
-					.createUnmarshaller().unmarshal( new File( EnvConf.getInstance().getConfPath() 
+					.createUnmarshaller().unmarshal( new File( Env.getInstance().getConfPath() 
 							+ "memqueue/memqueue.xml" ) );
 
 			if ( configuration != null ) {

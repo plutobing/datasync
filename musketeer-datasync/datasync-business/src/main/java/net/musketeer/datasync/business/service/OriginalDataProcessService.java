@@ -6,12 +6,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.Feature;
-
-import net.musketeer.datasync.core.DataModel;
 import net.musketeer.datasync.memqueue.MemQueueConsumer;
 import net.musketeer.datasync.memqueue.MemQueueProducer;
+import net.musketeer.datasync.model.DataModel;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
 
 /**
  * 原始数据处理服务类

@@ -4,11 +4,11 @@ import java.io.File;
 
 import javax.xml.bind.JAXBContext;
 
+import net.musketeer.datasync.Env;
+import net.musketeer.datasync.file.joran.ConfigurationDefinition;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.musketeer.datasync.core.conf.EnvConf;
-import net.musketeer.datasync.file.joran.ConfigurationDefinition;
 
 public class JoranConfigurator {
 	private static Logger LOG = LoggerFactory
@@ -34,7 +34,7 @@ public class JoranConfigurator {
 				.newInstance( new Class[] { ConfigurationDefinition.class } );
 		this.configuration = ( ( ConfigurationDefinition ) context
 				.createUnmarshaller().unmarshal(
-						new File( EnvConf.getInstance().getConfPath(),
+						new File( Env.getInstance().getConfPath(),
 								"file/configuration.xml" ) ) );
 		LOG.info( "The FILE-CONFIG initialized." );
 	}

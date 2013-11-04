@@ -1,5 +1,6 @@
 package net.musketeer.datasync.protocol.jms;
 
+
 public class JmsConsumer extends AbstractJmsConnector {
 
 	public < T, R > R received( T t ) throws Exception {

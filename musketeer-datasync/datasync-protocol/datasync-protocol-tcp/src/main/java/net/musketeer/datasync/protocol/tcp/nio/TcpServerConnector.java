@@ -18,8 +18,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import net.musketeer.datasync.protocol.config.ProtocolConfig;
 import net.musketeer.datasync.protocol.tcp.AbstractTcpConnector;
-import net.musketeer.datasync.protocol.tcp.model.TcpCommonsDefinition;
-import net.musketeer.datasync.protocol.tcp.model.TcpRequestDefinition;
+import net.musketeer.datasync.protocol.tcp.config.TcpRequestConfig;
 import net.musketeer.datasync.protocol.tcp.nio.event.Handler;
 import net.musketeer.datasync.protocol.tcp.nio.worker.NioServerWorker;
 
@@ -48,7 +47,7 @@ public class TcpServerConnector extends AbstractTcpConnector {
 	
 	protected boolean init() {
 		//Create Thread Pool
-		this.pool = ( ThreadPoolExecutor ) Executors.newFixedThreadPool( ( ( TcpRequestDefinition ) ( getDefinition().getRequest() ) ).getBackLog(), new ThreadFactory() {
+		this.pool = ( ThreadPoolExecutor ) Executors.newFixedThreadPool( ( ( TcpRequestConfig ) ( getDefinition().getRequest() ) ).getBackLog(), new ThreadFactory() {
 			
 			private int count = 0;
 			
@@ -69,9 +68,9 @@ public class TcpServerConnector extends AbstractTcpConnector {
 			final URI uri = URI.create( getDefinition().getCommons().getUri() );
 			InetSocketAddress address = new InetSocketAddress( uri.getHost(), uri.getPort() );
 			this.ssc = ServerSocketChannel.open();
-			this.ssc.configureBlocking( ( ( TcpCommonsDefinition ) getDefinition().getCommons() ).isBlock() );
+			this.ssc.configureBlocking( ( ( TcpRequestConfig ) getDefinition().getRequest() ).isBlock() );
 			ServerSocket serverSocket = this.ssc.socket();
-			serverSocket.bind( address );
+			serverSocket.bind( address, ( ( TcpRequestConfig ) getDefinition().getRequest() ).getBackLog() );
 			serverSocket.setReuseAddress( true );
 			this.selector = Selector.open();
 			this.ssc.register( this.selector, SelectionKey.OP_ACCEPT, new Acceptor() );
@@ -192,6 +191,22 @@ public class TcpServerConnector extends AbstractTcpConnector {
 			return ;
 		}
 		starter.shutdown();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.musketeer.datasync.protocol.Connection#getConfig()
+	 */
+	@Override
+	public ProtocolConfig getConfig() {
+		return this.config;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.musketeer.datasync.protocol.Connection#setConfig(net.musketeer.datasync.protocol.config.ProtocolConfig)
+	 */
+	@Override
+	public void setConfig( ProtocolConfig config ) {
+		this.config = config;
 	}
 
 }
