@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins xmlns="http://protocol.datasync.musketeer.net/plugins">
+	<plugin protocol="jms">
+		<config-processor>net.musketeer.datasync.protocol.jms.JmsConfigProcessor</config-processor>
+		<connection-server>net.musketeer.datasync.protocol.jms.JmsConsumerConnector</connection-server>
+		<connection-client>net.musketeer.datasync.protocol.jms.JmsProducerConnector</connection-client>
+	</plugin>
+	<plugin protocol="tcp">
+		<config-processor>net.musketeer.datasync.protocol.tcp.TcpConfigProcessor</config-processor>
+		<connection-server>net.musketeer.datasync.protocol.tcp.TcpServerConnector</connection-server>
+	</plugin>
+</plugins>

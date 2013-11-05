@@ -111,4 +111,21 @@ public class Env {
 		return logPath;
 	}
 	
+	public class SpecificKey {
+		
+		private SpecificKey() {
+		}
+		
+		public static final String JMS_CONSUMER_INNER_QUEUE = "JMS_CONSUMER_INNER_QUEUE";
+	
+	}
+
+	/**
+	 * @param jmsConsumerInnerQueue
+	 * @return
+	 */
+	public Object getProperty( String key ) {
+		return properties.get( key );
+	}
+	
 }

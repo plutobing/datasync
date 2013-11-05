@@ -49,7 +49,8 @@ public class ProtocolPluginManager {
 		StringBuilder plugin_conf_path = new StringBuilder( Env.getInstance().getConfPath() );
 		plugin_conf_path.append( "protocol" ).append( File.separator ).append( "plugins.xml" );
 		final File plugin_conf_file = new File( plugin_conf_path.toString() );
-		final JAXBContext context = JAXBContext.newInstance( ProtocolPlugins.class.getPackage().getName() );
+		final JAXBContext context = JAXBContext.newInstance( ProtocolPlugins.class.getPackage().getName(), 
+				this.getClass().getClassLoader() );
 		final Unmarshaller unmarshaller = context.createUnmarshaller();
 		this.plugins = ( ProtocolPlugins ) unmarshaller.unmarshal( plugin_conf_file );
 	}

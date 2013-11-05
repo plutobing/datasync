@@ -19,7 +19,7 @@ public class ConnectionPool {
 	
 	private int maxWaitTime = 5000;
 	
-	private ProtocolConfig definition;
+	private ProtocolConfig config;
 	
 	private BlockingQueue< Connection > pool;
 	
@@ -30,6 +30,14 @@ public class ConnectionPool {
 	public ConnectionPool( int capacity ) {
 		super();
 		this.capacity = capacity;
+		init();
+	}
+	
+	public ConnectionPool( int capacity, String connectionClass, ProtocolConfig config ) {
+		super();
+		this.capacity = capacity;
+		this.connectionClass = connectionClass;
+		this.config = config;
 		init();
 	}
 	
@@ -111,12 +119,18 @@ public class ConnectionPool {
 		this.capacity = capacity;
 	}
 
-	public ProtocolConfig getDefinition() {
-		return definition;
+	/**
+	 * @return the config
+	 */
+	public ProtocolConfig getConfig() {
+		return config;
 	}
 
-	public void setDefinition( ProtocolConfig definition ) {
-		this.definition = definition;
+	/**
+	 * @param config the config to set
+	 */
+	public void setConfig( ProtocolConfig config ) {
+		this.config = config;
 	}
 
 }

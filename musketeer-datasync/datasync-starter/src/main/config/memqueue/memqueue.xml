@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://datasync.musketeer.net/memoryQueue">
+	<queue name="jms_consumer" capacity="1000" priority="false"/>
+</configuration>

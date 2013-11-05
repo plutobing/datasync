@@ -7,6 +7,7 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.Session;
 
+import net.musketeer.datasync.Env;
 import net.musketeer.datasync.memqueue.MemQueueProducer;
 import net.musketeer.datasync.protocol.jms.NoSuchTypeException;
 import net.musketeer.datasync.protocol.jms.config.TypeEnum;
@@ -35,8 +36,8 @@ public class JmsConsumerDomain extends JmsDomain {
 			throw new NoSuchTypeException( "No such type defined [" + getType() + "]" );
 		}
 		this.consumer.setMessageListener( new MessageListener() {
-			
-			private MemQueueProducer producer = new MemQueueProducer( "jms_consumer" );
+			final String innerQueue = ( String ) Env.getInstance().getProperty( Env.SpecificKey.JMS_CONSUMER_INNER_QUEUE );
+			private MemQueueProducer producer = new MemQueueProducer( innerQueue );
 
 			public void onMessage( Message message ) {
 				if ( message instanceof BytesMessage ) {

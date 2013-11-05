@@ -65,7 +65,7 @@ public class TcpServerConnector extends AbstractTcpConnector {
 		
 		boolean completed = false;
 		try {
-			final URI uri = URI.create( getDefinition().getCommons().getUri() );
+			final URI uri = URI.create( getDefinition().getRequest().getUri() );
 			InetSocketAddress address = new InetSocketAddress( uri.getHost(), uri.getPort() );
 			this.ssc = ServerSocketChannel.open();
 			this.ssc.configureBlocking( ( ( TcpRequestConfig ) getDefinition().getRequest() ).isBlock() );

@@ -27,7 +27,7 @@ public class MemoryQueueManager {
 		try {
 			JAXBContext context = JAXBContext
 					.newInstance( ConfigurationDefinition.class.getPackage()
-							.getName() );
+							.getName(), this.getClass().getClassLoader() );
 
 			ConfigurationDefinition configuration = ( ConfigurationDefinition ) context
 					.createUnmarshaller().unmarshal( new File( Env.getInstance().getConfPath() 

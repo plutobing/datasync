@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlType
-public abstract class CommonsConfig extends AbstractAttributeDefinition {
+public abstract class CommonsConfig extends AbstractDefinition {
 	
 	@XmlAttribute
 	protected String charset;
