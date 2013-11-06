@@ -136,16 +136,6 @@ public class ProtocolConfigManager {
 	public void addPackageName( String name ) {
 		packageNames.add( name );
 	}
-	
-	public String createJaxbContextPath() {
-		final StringBuffer buffer = new StringBuffer( 16 );
-		buffer.append( ProtocolConfig.class.getPackage().getName() );
-		for ( String packageName : packageNames ) {
-			buffer.append( ":" );
-			buffer.append( packageName );
-		}
-		return buffer.toString();
-	}
 
 	/**
 	 * 

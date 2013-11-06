@@ -6,4 +6,5 @@ import net.musketeer.datasync.protocol.config.CommonsConfig;
 
 @XmlRootElement( name = "commons" )
 public class TcpCommonsConfig extends CommonsConfig {
+	
 }
