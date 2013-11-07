@@ -34,7 +34,7 @@ public class JmsProducerConnector extends AbstractJmsConnector {
 			final JmsRequestConfig request = ( JmsRequestConfig ) getConfig().getRequest();
 			final JmsCommonsConfig commons = ( JmsCommonsConfig ) getConfig().getCommons();
 			proxy = new JmsProducerDomain( request.getContextFactory(), 
-					request.getProviderUrl(), request.getDestination(), 
+					request.getUri(), request.getDestination(), 
 					commons.getCharset(), request.getType() );
 		}
 		proxy.init();

@@ -22,8 +22,6 @@ public class JmsRequestConfig extends RequestConfig {
 	@XmlAttribute
 	private String contextFactory;
 	@XmlAttribute
-	private String providerUrl;
-	@XmlAttribute
 	private String destination;
 	@XmlAttribute
 	private TypeEnum type;
@@ -41,18 +39,6 @@ public class JmsRequestConfig extends RequestConfig {
 	 */
 	public void setContextFactory( String contextFactory ) {
 		this.contextFactory = contextFactory;
-	}
-	/**
-	 * @return the providerUrl
-	 */
-	public String getProviderUrl() {
-		return providerUrl;
-	}
-	/**
-	 * @param providerUrl the providerUrl to set
-	 */
-	public void setProviderUrl( String providerUrl ) {
-		this.providerUrl = providerUrl;
 	}
 	/**
 	 * @return the destination

@@ -37,7 +37,7 @@ public class JmsConsumerConnector extends AbstractJmsConnector {
 			agents = new ArrayList< JmsConsumerDomain >( sessionCount );
 			for ( int i = 0; i < sessionCount; i++ ) {
 				JmsConsumerDomain agent = new JmsConsumerDomain( request.getContextFactory(), 
-					request.getProviderUrl(), request.getDestination(), 
+					request.getUri(), request.getDestination(), 
 					commons.getCharset(), request.getType() );
 				try {
 					agent.init();
