@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol.tcp xmlns="http://datasync.musketeer.net/protocol" mode="s" side="server" ioDirection="i/o" autoRun="true">
+	<request uri="0.0.0.0:65530" isBlock="false" keepAlive="true" reuseAddress="true" noDelay="true"/>
+</protocol.tcp>

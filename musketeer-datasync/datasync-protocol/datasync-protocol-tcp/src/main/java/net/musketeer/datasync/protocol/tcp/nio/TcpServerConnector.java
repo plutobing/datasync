@@ -29,8 +29,6 @@ public class TcpServerConnector extends AbstractTcpConnector {
 
 	private static Logger LOG = LoggerFactory.getLogger( TcpServerConnector.class );
 		
-	private ProtocolConfig definition;
-
 	private ServerSocketChannel ssc;
 	
 	private Selector selector;
@@ -41,13 +39,13 @@ public class TcpServerConnector extends AbstractTcpConnector {
 	
 	private ExecutorService starter;
 	
-	public TcpServerConnector( ProtocolConfig config ) {
-		super( config );
+	public TcpServerConnector() {
 	}
 	
 	protected boolean init() {
+		final TcpRequestConfig request = ( ( TcpRequestConfig ) ( getConfig().getRequest() ) );
 		//Create Thread Pool
-		this.pool = ( ThreadPoolExecutor ) Executors.newFixedThreadPool( ( ( TcpRequestConfig ) ( getDefinition().getRequest() ) ).getBackLog(), new ThreadFactory() {
+		this.pool = ( ThreadPoolExecutor ) Executors.newFixedThreadPool( request.getBackLog(), new ThreadFactory() {
 			
 			private int count = 0;
 			
@@ -65,18 +63,18 @@ public class TcpServerConnector extends AbstractTcpConnector {
 		
 		boolean completed = false;
 		try {
-			final URI uri = URI.create( getDefinition().getRequest().getUri() );
+			final URI uri = URI.create( getConfig().getRequest().getUri() );
 			InetSocketAddress address = new InetSocketAddress( uri.getHost(), uri.getPort() );
 			this.ssc = ServerSocketChannel.open();
-			this.ssc.configureBlocking( ( ( TcpRequestConfig ) getDefinition().getRequest() ).isBlock() );
+			this.ssc.configureBlocking( request.isBlock() );
 			ServerSocket serverSocket = this.ssc.socket();
-			serverSocket.bind( address, ( ( TcpRequestConfig ) getDefinition().getRequest() ).getBackLog() );
+			serverSocket.bind( address, request.getBackLog() );
 			serverSocket.setReuseAddress( true );
 			this.selector = Selector.open();
 			this.ssc.register( this.selector, SelectionKey.OP_ACCEPT, new Acceptor() );
 			completed = true;
 			
-			worker = new NioServerWorker( this.pool, definition );
+			worker = new NioServerWorker( this.pool, getConfig() );
 		} catch ( IOException e ) {
 			e.printStackTrace();
 			completed = false;
@@ -149,10 +147,6 @@ public class TcpServerConnector extends AbstractTcpConnector {
 
 	}
 
-	public ProtocolConfig getDefinition() {
-		return definition;
-	}
-
 	@Override
 	public < T, R > R received( T t ) throws Exception {
 		// TODO Auto-generated method stub
@@ -199,14 +193,6 @@ public class TcpServerConnector extends AbstractTcpConnector {
 	@Override
 	public ProtocolConfig getConfig() {
 		return this.config;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.musketeer.datasync.protocol.Connection#setConfig(net.musketeer.datasync.protocol.config.ProtocolConfig)
-	 */
-	@Override
-	public void setConfig( ProtocolConfig config ) {
-		this.config = config;
 	}
 
 }

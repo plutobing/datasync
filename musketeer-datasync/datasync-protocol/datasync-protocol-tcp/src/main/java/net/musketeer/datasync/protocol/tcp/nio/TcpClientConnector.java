@@ -1,14 +1,12 @@
 package net.musketeer.datasync.protocol.tcp.nio;
 
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.atomic.AtomicBoolean;
+
+import net.musketeer.datasync.protocol.config.ProtocolConfig;
+import net.musketeer.datasync.protocol.tcp.AbstractTcpConnector;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.musketeer.datasync.protocol.Connection;
-import net.musketeer.datasync.protocol.config.ProtocolConfig;
-import net.musketeer.datasync.protocol.tcp.AbstractTcpConnector;
 
 public class TcpClientConnector extends AbstractTcpConnector {
 
@@ -18,8 +16,7 @@ public class TcpClientConnector extends AbstractTcpConnector {
 		
 	private SocketChannel channel;
 	
-	public TcpClientConnector( ProtocolConfig config ) {
-		super( config );
+	public TcpClientConnector() {
 	}
 	
 	@Override
@@ -71,14 +68,6 @@ public class TcpClientConnector extends AbstractTcpConnector {
 	@Override
 	public ProtocolConfig getConfig() {
 		return this.config;
-	}
-
-	/* (non-Javadoc)
-	 * @see net.musketeer.datasync.protocol.Connection#setConfig(net.musketeer.datasync.protocol.config.ProtocolConfig)
-	 */
-	@Override
-	public void setConfig( ProtocolConfig config ) {
-		this.config = config;
 	}
 
 }

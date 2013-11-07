@@ -7,6 +7,6 @@
 	</plugin>
 	<plugin protocol="tcp">
 		<config-processor>net.musketeer.datasync.protocol.tcp.TcpConfigProcessor</config-processor>
-		<connection-server>net.musketeer.datasync.protocol.tcp.TcpServerConnector</connection-server>
+		<connection-server>net.musketeer.datasync.protocol.tcp.nio.TcpServerConnector</connection-server>
 	</plugin>
 </plugins>

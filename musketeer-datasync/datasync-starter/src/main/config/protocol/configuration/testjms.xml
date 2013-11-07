@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol.jms xmlns="http://datasync.musketeer.net/protocol" mode="a" side="server" ioDirection="i" autoRun="true">
+	<request uri="tcp://192.168.170.1:61618" contextFactory="org.apache.activemq.jndi.ActiveMQInitialContextFactory" destination="queueName" type="queue"/>
+</protocol.jms>
